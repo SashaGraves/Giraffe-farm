@@ -1,0 +1,41 @@
+{
+  "name": "giraffe-farm-front",
+  "version": "1.0.0",
+  "description": "UI part of Giraffe farm",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel ./src/index.html -p 4343",
+    "restart": "parcel ./src/index.html -p 4343 --no-cache"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SashaGraves/Giraffe-farm-front.git"
+  },
+  "author": "Sasha Graves",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SashaGraves/Giraffe-farm-front/issues"
+  },
+  "homepage": "https://github.com/SashaGraves/Giraffe-farm-front#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-hook-form": "^5.7.2",
+    "react-media-match": "^1.10.2"
+  },
+  "devDependencies": {
+    "acorn": ">=5.7.4",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^2.5.1",
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.26.3"
+  }
+}

@@ -1,0 +1,30 @@
+.profile {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    
+    img.avatar {
+        max-width: 59px;
+        max-height: 59px;
+    }
+    
+    .username { 
+        font-size: 10px;
+        line-height: 18px;
+        color: #FFFFFF;
+        margin-left: 10px;
+        font-weight: 300;
+        
+        &::first-line {
+            font-weight: bold;
+        }
+    }
+    
+    .login {
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 19px;
+        color: #484848;
+        margin-left: 13px;
+    }
+}

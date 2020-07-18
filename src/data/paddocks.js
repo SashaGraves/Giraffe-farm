@@ -16,6 +16,53 @@ const paddocks = [
     }
 ];
 
+const paddock = [
+    {
+        id: 0,
+        name: 'Egor',
+        weight: 800,
+        sex: 'M',
+        height: 4.9,
+        color: 'green',
+        diet: 'None',
+        temper: 'Wild',
+        image: 'giraffe_egor.jpg'
+    },
+    {
+        id: 1,
+        name: 'Нина',
+        weight: 820,
+        sex: 'Ж',
+        height: 5.9,
+        color: 'желтый',
+        diet: 'Без сладкого',
+        temper: 'Зажигательный',
+        image: 'giraffe_nina.jpg'
+    },
+    {
+        id: 2,
+        name: 'Джуффин Халли',
+        weight: 1000,
+        sex: 'M',
+        height: 1.9,
+        color: 'невероятный',
+        diet: 'пирожки и камра',
+        temper: 'лисий',
+        image: 'giraffe_juffin.jpg'
+    },
+    {
+        id: 3,
+        name: 'Egor',
+        weight: 800,
+        sex: 'M',
+        height: 4.9,
+        color: 'green',
+        diet: 'None',
+        temper: 'Wild',
+        image: 'giraffe_egor.jpg'
+    }
+];
+
 const giraffe = {
     name: 'Egor',
     weight: 800,
@@ -27,4 +74,4 @@ const giraffe = {
     image: 'giraffe_egor.jpg'
 }
 
-export { paddocks, giraffe };
+export { paddocks, paddock, giraffe };

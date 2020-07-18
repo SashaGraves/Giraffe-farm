@@ -1,59 +1,52 @@
 import React, { useState } from 'react';
-import giraffePhoto from '../../../static/photo.jpg';
 import CardMenu from './card-menu/CardMenu';
-import './card.scss';
+import CardShow from './card-templates/Card-show';
+import CRUDkeyword from '../../../static/globals';
 
-function Card({ data }) {
+function Card({ data, crudMode }) {
     const [menuVisible, toggleMenu] = React.useState(false);
+    const [cardMode, setCardMode] = React.useState(crudMode);
     const showMenu = () => {
         toggleMenu(!menuVisible);
     };
-    return (
-        <div className="card">
-            <button type="button" onClick={showMenu} className="card-menu-button">
-                <i className="fas fa-ellipsis-h" />
-            </button>
-            {
-                (menuVisible) && <CardMenu />
-            }
-            <img src={giraffePhoto} alt="giraffe photo" className="giraffe-avatar" />
-            <h2 className="giraffe-name">
-                {data.name}
-            </h2>
-            <div className="table">
-                <ul className="table-header">
-                    <li><i className="fas fa-venus-mars" /></li>
-                    <li><i className="fas fa-balance-scale" /></li>
-                    <li><i className="fas fa-ruler-vertical" /></li>
-                </ul>
-                <ul className="table-row">
-                    <li>
-                        {data.sex}
-                    </li>
-                    <li>
-                        {data.weight}
-                    </li>
-                    <li>
-                        {data.height}
-                    </li>
-                </ul>
-            </div>
-            <ul className="description">
-                <li>
-                    <b>Цвет: </b>
-                    {data.color}
-                </li>
-                <li>
-                    <b>Диета: </b>
-                    {data.diet}
-                </li>
-                <li>
-                    <b>Характер: </b>
-                    {data.temper}
-                </li>
-            </ul>
-        </div>
-    )
+    
+    const editCard = (cardId) => {
+        console.log('Edit card, id ' + cardId);
+        setCardMode(CRUDkeyword[3]);
+    };
+    
+    const deleteCard = (cardId) => {
+        console.log('Delete card, id ' + cardId);
+        setCardMode(CRUDkeyword[4]);
+    };
+    
+    if (cardMode === 'create') {
+        return (
+            <div>Create new Card</div>
+        )
+    } else if (cardMode === 'read') {
+        return (
+            <CardShow 
+                data={data} 
+                showMenu={showMenu} 
+                menuVisible={menuVisible} 
+            >
+                {
+                    (menuVisible) && 
+                    <CardMenu editCard={() => editCard(data.id)} deleteCard={() => deleteCard(data.id)} />
+                }
+            </CardShow>
+        );
+    } else if (cardMode === 'update') {
+        return (
+            <div>Edit this card</div>
+        )
+    } else if (cardMode === 'delete') {
+        return (
+            <div>Delete this card</div>
+        )
+    }
+    return (<div>Something gone wrong</div>)
 }
 
 export default Card;

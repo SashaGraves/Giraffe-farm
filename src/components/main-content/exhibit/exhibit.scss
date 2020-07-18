@@ -22,13 +22,28 @@
                 border-radius: 50%;
                 padding: 8px 10px;
             }
+            
+            &[disabled] i {
+                background-color: #b3b6b3;
+                border: 1px solid #b3b6b3;
+                margin-right: 10px;
+            }
         }
     }
     
     .card-list {
         display: flex;
-        flex-flow: row nowrap;
+        flex-flow: row wrap;
         justify-content: flex-start;
         align-items: flex-start;
+        
+        .card {
+            margin-bottom: 15px;
+            margin-right: 20px;
+        }
+    }
+    
+    .exhibit-sum {
+        
     }
 }

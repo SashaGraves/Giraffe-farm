@@ -1,4 +1,5 @@
 const userName = "Ферма Заслуженных Жирафов России и СНГ";
 const login = "hello@giraffe.com";
+const maxNumberGiraffes = 8;
 
-export { userName, login }
+export { userName, login, maxNumberGiraffes }

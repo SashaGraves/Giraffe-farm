@@ -11,4 +11,12 @@
     .icon-button:first-of-type {
         margin-bottom: 9px;
     }
+    
+    .icon-button:last-of-type {
+        background-color: #668663;
+        
+        &:hover {
+            background-color: #2b4b29; 
+        }
+    }
 }

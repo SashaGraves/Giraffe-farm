@@ -4,9 +4,9 @@ import './buttons-n-links.scss';
 function IconButton(props) {
     // button with label and cute icon
     return (
-        <button type="button" className="icon-button">
-            <img src={props.icon} />
-            {props.title}
+        <button type="button" className="icon-button" onClick={props.clickHandler}>
+            <i className={props.iconClassName} aria-hidden="true" />
+            <span>{props.title}</span>
         </button>
     )
 }
@@ -25,10 +25,20 @@ function NavigationButton(props) {
     const buttonClassName = props.className ? (props.className + " nav-button") : "nav-button"
     return (
         <a href={props.link} className={buttonClassName}>
-            <i className={props.iconClassName} aria-hidden="true"></i>
+            <i className={props.iconClassName} aria-hidden="true" />
             <span>{props.title}</span>
         </a>
     )
 }
 
-export { IconButton, TextButton, NavigationButton };
+function TabButton(props) {
+    // tab buttons in header of main content
+    const buttonClassName = props.className ? (props.className + " tab-button") : "tab-button"
+    return (
+    <button type="button" className={buttonClassName}>
+        {props.title}
+    </button>
+    )
+}
+
+export { IconButton, TextButton, NavigationButton, TabButton };

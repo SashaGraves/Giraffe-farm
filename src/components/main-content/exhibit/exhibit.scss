@@ -1,0 +1,34 @@
+.exhibit {
+    .exhibit-title {
+        margin: 35px 0 26px;
+        h1 {
+            font-weight: bold;
+            font-size: 32px;
+            line-height: 37px;
+            color: #567354;
+            display: inline-block;
+        }
+        
+        button { 
+            margin-left: 13px;
+            vertical-align: bottom;
+            background-color: transparent;
+
+            i {
+                font-size: 18px;
+                color: #FFFFFF;
+                background-color: #668663;
+                border: 1px solid #668663;
+                border-radius: 50%;
+                padding: 8px 10px;
+            }
+        }
+    }
+    
+    .card-list {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+}

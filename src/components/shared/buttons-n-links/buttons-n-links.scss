@@ -43,6 +43,38 @@
     }
 }
 
+.text-button {
+    max-width: 151px;
+    max-height: 32px;
+    border-radius: 52px;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    padding: 8px 18px;
+    color: #FFFFFF;
+    background-color: #435F40;
+    
+    &:hover {
+        background-color: #88a786;
+        
+        span, i {
+            color: #bacaba;
+        }
+    }
+    
+    &:focus {
+        box-shadow: 0 0 1px 1px #88a786;
+    }
+    
+    &:active {
+        background-color: #435F40;
+        
+        span, i {
+            color: #FFFFFF;
+        }
+    }
+}
+
 a.nav-button {
     max-width: 237px;
     height: 51px;

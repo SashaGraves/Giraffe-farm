@@ -1,0 +1,16 @@
+.progress-bar {
+    background-color: #435F40;
+    border-radius: 35px;
+    padding: 4px 5px;
+    box-sizing: border-box;
+    width: 70%;
+    min-width: 200px;
+    height: 30px;
+    
+    .progress-line {
+        height: 21px;
+        content: '';
+        background-color: #F3DBC7;
+        border-radius: 35px;
+    }
+}

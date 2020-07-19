@@ -14,7 +14,7 @@ function IconButton(props) {
 function TextButton(props) {
     // button with label only
     return (
-        <button type="button" className="text-button">
+        <button type={props.type} className={`text-button ${props.className}`} onClick={props.clickHandler} disabled={props.disabled}>
             {props.title}
         </button>
     )

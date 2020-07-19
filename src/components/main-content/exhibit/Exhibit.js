@@ -3,26 +3,24 @@ import Card from '../card/Card';
 import { giraffe, paddock } from '../../../data/paddocks';
 import { maxNumberGiraffes } from '../../../data/user-data';
 import CRUDkeyword from '../../../static/globals';
-import ExhibitSum from './exhibit-sum/exhibit-sum';
+import ExhibitFill from './exhibit-fill/ExhibitFill';
 import './exhibit.scss';
 
 function Exhibit() {
     const [giraffeNumber, changeGiraffeNumber] = React.useState(paddock.length);
     
-    const cardList = paddock.map(item => <Card key={item.id} data={item} crudMode={CRUDkeyword[2]} />);
+    const cardList = paddock.map(item => <Card key={item.id} data={item} crudMode="read" />);
     
     const [addingCard, toggleNewCard] = React.useState(false);
-    const newCard = <div>Here is new card</div>;
 
     const addCard = () => {
-        console.log('I hear u');
         if (giraffeNumber < maxNumberGiraffes) {
             toggleNewCard(true);
         } else {
             pass
         }
     }; 
-    
+        
     return (
         <div className="exhibit">
             <div className="exhibit-title">
@@ -33,10 +31,10 @@ function Exhibit() {
                 <button type="button" disabled><i className="fas fa-plus"></i>Вольер заполнен</button>}
             </div>
             <div className="card-list">
-                {addingCard && newCard}
+                {addingCard && <Card crudMode="create" removeNewCard={() => toggleNewCard(false)} />}
                 {cardList}
             </div>
-            <ExhibitSum giraffeSum={giraffeNumber}/>
+            <ExhibitFill giraffeSum={giraffeNumber}/>
         </div>
     )
 }

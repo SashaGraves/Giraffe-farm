@@ -1,49 +1,87 @@
 import React, { useState } from 'react';
 import CardMenu from './card-menu/CardMenu';
-import CardShow from './card-templates/Card-show';
+import CardShowDelete from './card-templates/Card-show-delete';
+import CardAddUpdate from './card-templates/Card-add-update';
 import CRUDkeyword from '../../../static/globals';
 
-function Card({ data, crudMode }) {
+function Card(props) {
     const [menuVisible, toggleMenu] = React.useState(false);
-    const [cardMode, setCardMode] = React.useState(crudMode);
+    const [cardMode, setCardMode] = React.useState(props.crudMode);
+
     const showMenu = () => {
         toggleMenu(!menuVisible);
     };
     
     const editCard = (cardId) => {
         console.log('Edit card, id ' + cardId);
-        setCardMode(CRUDkeyword[3]);
+        setCardMode('update');
+        toggleMenu(false);
     };
     
     const deleteCard = (cardId) => {
         console.log('Delete card, id ' + cardId);
-        setCardMode(CRUDkeyword[4]);
+        setCardMode('delete');
+        toggleMenu(false);
+    };
+    
+    const returnShowMode = () => {
+        setCardMode('read');
+        toggleMenu(false);
     };
     
     if (cardMode === 'create') {
         return (
-            <div>Create new Card</div>
+            <CardAddUpdate 
+                returnShowMode={props.removeNewCard}
+                data={{
+                    name: '',
+                    weight: '',
+                    sex: '',
+                    height: '',
+                    color: '',
+                    diet: '',
+                    temper: '',
+                    image: ''
+                }}
+                CRUDmode={cardMode}
+            />
         )
     } else if (cardMode === 'read') {
         return (
-            <CardShow 
-                data={data} 
+            <CardShowDelete 
+                data={props.data} 
                 showMenu={showMenu} 
                 menuVisible={menuVisible} 
+                CRUDmode={cardMode}
             >
                 {
                     (menuVisible) && 
-                    <CardMenu editCard={() => editCard(data.id)} deleteCard={() => deleteCard(data.id)} />
+                    <CardMenu editCard={() => editCard(props.data.id)} deleteCard={() => deleteCard(props.data.id)} />
                 }
-            </CardShow>
+            </CardShowDelete>
         );
     } else if (cardMode === 'update') {
         return (
-            <div>Edit this card</div>
+            <CardAddUpdate 
+                returnShowMode={returnShowMode}
+                data={props.data}
+                CRUDmode={cardMode}
+            />
         )
     } else if (cardMode === 'delete') {
         return (
-            <div>Delete this card</div>
+            <CardShowDelete 
+                data={props.data} 
+                showMenu={showMenu} 
+                menuVisible={menuVisible} 
+                CRUDmode={cardMode}
+                returnShowMode={returnShowMode}
+            >
+                {
+                    (menuVisible) && 
+                    <CardMenu editCard={() => editCard(props.data.id)} deleteCard={() => deleteCard(props.data.id)} />
+                }
+            </CardShowDelete>
         )
     }
     return (<div>Something gone wrong</div>)

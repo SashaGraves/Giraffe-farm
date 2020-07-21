@@ -1,8 +1,7 @@
 import React, { useState, useRef } from 'react';
-import axios from 'axios';
 import addPhoto from '../../../static/add-photo.jpg';
 
-function UploadPhoto({ className }) {
+function UploadPhoto({ className, sendFiles }) {
     
     const [photo, setPhoto] = useState(addPhoto);
     
@@ -12,10 +11,12 @@ function UploadPhoto({ className }) {
         if (event.target.files.length === 0 || event.target.files == undefined) {
             return
         } else {
+            sendFiles(event.target.files[0]);
             setPhoto(event.target.files[0]);
             const avatar = imageUploadRef.current;
             const reader = new FileReader();
             reader.onload = (function(aImg) {
+                sendFiles(reader.result);
                 return function(e) {
                     aImg.src = e.target.result; 
                 }; 
@@ -24,19 +25,6 @@ function UploadPhoto({ className }) {
         }
     }
     
-    
-    // const sendFiles = async (event) => {
-    //     let formData = new FormData();
-    //     formData.append('file', photo[0]);
-    //     const { data } = await axios.post('/uploadImage', formData, {
-    //         headers: {
-    //             'Content-Type': 'multipart/form-data'
-    //         }
-    //     })
-    //     if (data.success) {
-    //         setPhoto();
-    //     }
-    // }
     return (
         <div>
             <label htmlFor="file">

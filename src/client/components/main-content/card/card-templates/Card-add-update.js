@@ -4,8 +4,9 @@ import './card-template.scss';
 import { TextButton } from '../../../shared/buttons-n-links/buttons-n-links';
 import InputField from '../../../shared/inputs/InputField';
 import UploadPhoto from '../../../shared/inputs/UploadPhoto';
+import axios from 'axios';
 
-function CardAddUpdate({ returnShowMode, data, CRUDmode }) {
+function CardAddUpdate({ returnShowMode, data, CRUDmode, updateRequest }) {
     const [formValue, setFormValue] = React.useState(data);
     const [canSubmit, setSubmitPermission] = React.useState(Boolean(formValue.name));
 
@@ -16,14 +17,43 @@ function CardAddUpdate({ returnShowMode, data, CRUDmode }) {
         setSubmitPermission(Boolean(formValue.name));
     };
     
-    const onSubmitHandler = (e) => {
+    const sendFiles = (photo) => {
+        const value =  photo;
+        setFormValue(formValue => ({ ...formValue, image: value }));
+        console.log(formValue);
+    }
+    
+    const onSubmitPostHandler = (e) => {
+        e.preventDefault();
+        let axiosConfig = {
+            headers: {
+                'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin": "*",
+            }
+          };
+        axios.post('http://localhost:3000/api/giraffe', formValue, axiosConfig)
+        .then((response) => console.log(response))
+        .catch((e) => console.log(e));          
+    };
+    
+    const onSubmitPutHandler = (e) => {
         e.preventDefault();
         console.log(formValue, "formValue");
+        
+        let axiosConfig = {
+            headers: {
+                'Content-Type': 'application/json; multipart/form-data',
+                "Access-Control-Allow-Origin": "*",
+            }
+          };
+        axios.put(`http://localhost:3000/api/giraffe/${formValue._id}`, formValue, axiosConfig)
+            .then((response) => console.log(response))
+            .catch((e) => console.log(e));
     };
     
     return (
         <form className="card" action="" method="">
-            <UploadPhoto className="giraffe-avatar add-avatar" />
+            <UploadPhoto className="giraffe-avatar add-avatar" sendFiles={sendFiles} />
             <InputField name="name" className="giraffe-name" label="Имя жирафа" placeholder="Имя" maxValue={12} value={formValue.name} onChangeHandler={onChangeHandler} />
             <div className="table">
                 <ul className="table-header">
@@ -36,10 +66,10 @@ function CardAddUpdate({ returnShowMode, data, CRUDmode }) {
                         <InputField type="text" name="sex" className="" label="пол жирафа" placeholder="-" maxValue={1} value={formValue.sex} onChangeHandler={onChangeHandler} />
                     </li>
                     <li className="table-cell">
-                        <InputField type="number" name="weight" className="" label="вес жирафа" placeholder="-" maxValue={4} value={formValue.weight} onChangeHandler={onChangeHandler} />
+                        <InputField type="number" name="weight" className="" label="вес жирафа" placeholder="-" min={1} max={4000} value={formValue.weight} onChangeHandler={onChangeHandler} />
                     </li>
                     <li className="table-cell">
-                        <InputField type="number" name="height" className="" label="рост жирафа" placeholder="-" maxValue={1} value={formValue.height} onChangeHandler={onChangeHandler} />
+                        <InputField type="number" name="height" className="" label="рост жирафа" placeholder="-" max={10} min={1} value={formValue.height} onChangeHandler={onChangeHandler} />
                     </li>
                 </ul>
             </div>
@@ -60,7 +90,7 @@ function CardAddUpdate({ returnShowMode, data, CRUDmode }) {
             {
                 (CRUDmode === 'create') && (
                 <div>
-                    <TextButton type='submit' title="Сохранить" className="save-card-button" disabled={!canSubmit} clickHandler={(e) => {onSubmitHandler(e); returnShowMode(); }} />
+                    <TextButton type='submit' title="Сохранить" className="save-card-button" disabled={!canSubmit} clickHandler={(e) => {onSubmitPostHandler(e); returnShowMode(); updateRequest(true);}} />
                     <TextButton type="button" title="Удалить" className="delete-card-button" clickHandler={returnShowMode} />
                 </div>
                 )
@@ -68,7 +98,7 @@ function CardAddUpdate({ returnShowMode, data, CRUDmode }) {
             {
                 (CRUDmode === 'update') && (
                 <div>
-                    <TextButton type='submit' title="Сохранить" className="save-card-button" disabled={!canSubmit} clickHandler={(e) => {onSubmitHandler(e); returnShowMode()}} />
+                    <TextButton type='submit' title="Сохранить" className="save-card-button" disabled={!canSubmit} clickHandler={(e) => {onSubmitPutHandler(e); returnShowMode(); updateRequest(true);}} />
                     <TextButton type="button" title="Отменить" className="revert-changes-button" clickHandler={() => {setFormValue(data); returnShowMode()}} />
                 </div>
                 )

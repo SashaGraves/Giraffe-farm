@@ -35,15 +35,16 @@ function Card(props) {
                 returnShowMode={props.removeNewCard}
                 data={{
                     name: '',
-                    weight: '',
+                    weight: undefined,
                     sex: '',
-                    height: '',
+                    height: undefined,
                     color: '',
                     diet: '',
                     temper: '',
                     image: ''
                 }}
                 CRUDmode={cardMode}
+                updateRequest={props.updateRequest}
             />
         )
     } else if (cardMode === 'read') {
@@ -66,6 +67,7 @@ function Card(props) {
                 returnShowMode={returnShowMode}
                 data={props.data}
                 CRUDmode={cardMode}
+                updateRequest={props.updateRequest}
             />
         )
     } else if (cardMode === 'delete') {
@@ -76,6 +78,7 @@ function Card(props) {
                 menuVisible={menuVisible} 
                 CRUDmode={cardMode}
                 returnShowMode={returnShowMode}
+                updateRequest={props.updateRequest}
             >
                 {
                     (menuVisible) && 

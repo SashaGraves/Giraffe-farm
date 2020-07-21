@@ -1,4 +1,9 @@
 .exhibit {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 96%;
+    
     .exhibit-title {
         margin: 35px 0 26px;
         h1 {
@@ -36,10 +41,18 @@
         flex-flow: row wrap;
         justify-content: flex-start;
         align-items: flex-start;
+        // flex-flow: row-reverse wrap-reverse;
+        // justify-content: flex-end;
+        // align-items: flex-end;
         
         .card {
             margin-bottom: 15px;
             margin-right: 20px;
         }
     }
+    
+    .exhibit-fill {
+        align-self: flex-end;
+    }
 }
+

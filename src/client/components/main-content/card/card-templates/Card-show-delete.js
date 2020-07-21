@@ -1,11 +1,35 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import giraffePhoto from '../../../../static/photo.jpg';
 import { TextButton } from '../../../shared/buttons-n-links/buttons-n-links';
 import './card-template.scss';
 
-function CardShowDelete({ data, showMenu, children, CRUDmode, returnShowMode }) {
+function CardShowDelete({ data, showMenu, children, CRUDmode, returnShowMode, updateRequest }) {
+    const imageRef = React.useRef(null);
+
+    // if (data.image.type === Blob.type) {
+    //     const avatar = imageRef.current;
+    // const reader = new FileReader();
+    //     reader.onload = (function(aImg) {
+    //         return function(e) {
+    //             aImg.src = reader.result; 
+    //         }; 
+    //     })(avatar);
+    // reader.readAsDataURL(data.image);}
+ 
+    
     const deleteData = () => {
         console.log(data, 'delete this data');
+        let axiosConfig = {
+            headers: {
+                'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin": "*",
+            }
+          };
+        axios.delete(`http://localhost:3000/api/giraffe/${data._id}`, data, axiosConfig)
+            .then((response) => console.log(response))
+            .catch((e) => console.log(e));
+    
         returnShowMode();
     };
     return (
@@ -19,7 +43,7 @@ function CardShowDelete({ data, showMenu, children, CRUDmode, returnShowMode }) 
             {
                 children
             }
-            <img src={giraffePhoto} alt="giraffe photo" className="giraffe-avatar" />
+            <img src={giraffePhoto} alt="giraffe photo" className="giraffe-avatar" ref={imageRef} />
             <h2 className="giraffe-name">
                 {data.name}
             </h2>
@@ -58,11 +82,14 @@ function CardShowDelete({ data, showMenu, children, CRUDmode, returnShowMode }) 
             
             {
                 (CRUDmode === 'delete') &&
-                <TextButton type="button" title="Удалить" className="delete-card-button" clickHandler={deleteData} />
+                <div>
+                    <TextButton type="button" title="Удалить" className="delete-card-button" clickHandler={() => {deleteData(); updateRequest(true);}} />
+                    <TextButton type="button" title="Отменить" className="revert-changes-button" clickHandler={() => returnShowMode()} />
+                </div>
             }
         </div>
     )
-}
+};
 
 export default CardShowDelete;
  

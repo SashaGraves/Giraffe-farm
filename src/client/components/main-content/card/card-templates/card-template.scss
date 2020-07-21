@@ -97,12 +97,15 @@
             & span {
                 padding: 0 18px;
             }
+            
+            & input {
+                width: 60px;
+            }
         }
     }
     
     input {
         background-color: transparent;
-        width: 55%;
 
         &::placeholder {
             color: #333333;
@@ -124,6 +127,10 @@
         li {
             text-transform: capitalize;
             padding: 9px 7px;
+            
+            & input {
+                width: 55%;
+            }
         }
     }
     

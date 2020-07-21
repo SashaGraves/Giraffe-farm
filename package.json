@@ -5,8 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel ./src/index.html -p 4343",
-    "restart": "parcel ./src/index.html -p 4343 --no-cache"
+    "start": "parcel ./src/client/index.html -p 4343",
+    "restart": "parcel ./src/client/index.html -p 4343 --no-cache",
+    "server": "nodemon ./src/server/index.js",
+    "startnode": "node ./src/server/index.js",
+    "dev": "concurrently \"npm start\" \"npm run server\""
   },
   "repository": {
     "type": "git",
@@ -20,6 +23,16 @@
   "homepage": "https://github.com/SashaGraves/Giraffe-farm-front#readme",
   "dependencies": {
     "axios": "^0.19.2",
+    "concurrently": "^5.2.0",
+    "config": "^3.3.1",
+    "cookie-parser": "^1.4.5",
+    "cookie-session": "^1.4.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.7",
+    "multer": "^1.4.2",
+    "nodemon": "^2.0.4",
+    "passport": "^0.4.1",
+    "passport-google-oauth": "^2.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hook-form": "^5.7.2",
@@ -36,6 +49,7 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.1",
     "parcel-bundler": "^1.12.4",
-    "sass": "^1.26.3"
+    "sass": "^1.26.3",
+    "supertest": "^4.0.2"
   }
 }

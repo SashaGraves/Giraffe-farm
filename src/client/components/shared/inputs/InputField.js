@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
-function InputField({ name, className, label, placeholder, value, onChangeHandler, maxValue }) {
+function InputField({ type, name, className, label, placeholder, value, onChangeHandler, maxValue, max, min }) {
     const [isPlaceholder, togglePlaceholder] = React.useState(true);
     let customPlaceholder = isPlaceholder ? placeholder : '';
     
     return (
     <input 
         name={name}
-        type='text' 
+        type={type} 
         className={className} 
         aria-label={label}
         placeholder={customPlaceholder} 
@@ -17,6 +17,8 @@ function InputField({ name, className, label, placeholder, value, onChangeHandle
         value={value}
         onChange={(e) => onChangeHandler(e)}
         maxLength={maxValue}
+        min={min}
+        max={max}
     />
     );
 }

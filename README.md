@@ -13,4 +13,4 @@ Unfortunately, I failed to implement image upload =( That's why all your giraffe
 
 On the other hand, I'm pleased with component design. I like the way Card wrapper manages giraffe look and behavior. Card wrapper renders 4 different types of card template accordingly to selected action: add giraffe, change it, delete or just observe them all (CRUD actions). I'm also pretty fine with my HTML-CSS; I used some media-query, so site is not mobile-hostile. 
 
-Backend was huge challenge for me, especially CORS policy - after all, I used cors module with options. MongoDB and mongoose are really cool tools; I'm looking forward to using them more. 
+Backend was huge challenge for me, especially CORS policy - after all, I used cors module with options. MongoDB and mongoose are really cool tools; I'm looking forward to using its more. 

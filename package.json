@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/SashaGraves/Giraffe-farm-front#readme",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "1.16.0",
     "concurrently": "^5.2.0",
     "config": "^3.3.1",
     "cookie-parser": "^1.4.5",
